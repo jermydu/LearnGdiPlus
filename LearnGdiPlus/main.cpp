@@ -8,10 +8,16 @@ using namespace Gdiplus;
 VOID OnPaint(HDC hdc)
 {
 	Graphics graphics(hdc);
-	Pen      pen(Color(255, 0, 0, 255),3);
-	graphics.DrawLine(&pen, 0, 0, 200, 100);
+	//Pen      pen(Color(255, 0, 0, 255),3);
+	//将世界坐标映射到页面坐标
+	/*graphics.TranslateTransform(100.0f, 50.0f);
+	graphics.DrawLine(&pen, 0, 0, 200, 100);*/
 
-
+	//设置测量单位为英寸绘制
+	graphics.SetPageUnit(UnitInch);
+	Pen      pen(Color(255, 0, 0, 255), 0.01);
+	graphics.TranslateTransform(2.0f, 0.5f);
+	graphics.DrawLine(&pen, 0, 0, 2, 1);
 }
 
 LRESULT CALLBACK WndProc(HWND, UINT, WPARAM, LPARAM);
